@@ -10,7 +10,9 @@
     "gulp": "*",
     "gulp-util": "*",
     "gulp-concat": "*",
-    "gulp-browserify": "*"
+    "gulp-uglify": "*",
+    "gulp-browserify": "*",
+    "gulp-minify-html": "*"
   },
   "engines": {
     "node": "0.10.24",
