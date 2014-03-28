@@ -1,0 +1,19 @@
+{
+  "name": "lucy",
+  "version": "0.0.1",
+  "dependencies": {
+    "jquery-browserify": "*",
+    "underscore": "*",
+    "backbone-browserify": "*"
+  },
+  "devDependencies": {
+    "gulp": "*",
+    "gulp-util": "*",
+    "gulp-concat": "*",
+    "gulp-browserify": "*"
+  },
+  "engines": {
+    "node": "0.10.24",
+    "npm": "1.3.21"
+  }
+}
