@@ -4,6 +4,7 @@ var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var browserify = require('gulp-browserify');
 var minifyHTML = require('gulp-minify-html');
+var imagemin = require('gulp-imagemin');
 
 var paths = {
     src: './src',
@@ -11,8 +12,13 @@ var paths = {
 };
 
 var files = {
-    scripts: ['./src/scripts/**/*.js'],
-    html: ['./src/**/*.html']
+    scripts: [paths.src+'/scripts/**/*.js'],
+    html: [paths.src+'/**/*.html'],
+    images: [
+        paths.src+'/images/**/*.png',
+        paths.src+'/images/**/*.jpg',
+        paths.src+'/images/**/*.gif'
+    ]
 };
 
 gulp.task('scripts', function (cb) {
@@ -33,12 +39,21 @@ gulp.task('html', function() {
         .pipe(gulp.dest(paths.dist));
 });
 
+gulp.task('images', function() {
+    gulp.src(files.images)
+        .pipe(imagemin())
+        .pipe(gulp.dest(paths.dist+'/images'));
+});
+
 gulp.task('watch', function () {
     
     gulp.watch(files.scripts, ['scripts']);
 
     gulp.watch(files.html, ['html']);
 
+    gulp.watch(files.images, ['images']);
+
 });
 
-gulp.task('default', ['scripts', 'html', 'watch']);
+gulp.task('default', ['scripts', 'html', 'images', 'watch']);
+

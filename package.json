@@ -12,7 +12,8 @@
     "gulp-concat": "*",
     "gulp-uglify": "*",
     "gulp-browserify": "*",
-    "gulp-minify-html": "*"
+    "gulp-minify-html": "*",
+    "gulp-imagemin": "*"
   },
   "engines": {
     "node": "0.10.24",
