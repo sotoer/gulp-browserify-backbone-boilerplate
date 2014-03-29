@@ -6,6 +6,7 @@ var browserify = require('gulp-browserify');
 var minifyHTML = require('gulp-minify-html');
 var stylus = require('gulp-stylus');
 var imagemin = require('gulp-imagemin');
+var connect = require('gulp-connect');
 
 var paths = {
     src: './src',
@@ -31,27 +32,37 @@ gulp.task('scripts', function (cb) {
         }))
         .pipe(concat('build.js'))
         .pipe(uglify({outSourceMap:true}))
-        .pipe(gulp.dest(paths.dist+'/js'));
+        .pipe(gulp.dest(paths.dist+'/js'))
+        .pipe(connect.reload());
 });
 
 gulp.task('html', function() {
     var opts = {comments:true, spare:true};
     gulp.src(paths.src + '/index.html')
         .pipe(minifyHTML(opts))
-        .pipe(gulp.dest(paths.dist));
+        .pipe(gulp.dest(paths.dist))
+        .pipe(connect.reload());
 });
 
 gulp.task('stylus', function() {
     gulp.src(files.stylus)
         .pipe(stylus({use: ['nib']}))
-        .pipe(gulp.dest(paths.dist+'/css'));
+        .pipe(gulp.dest(paths.dist+'/css'))
+        .pipe(connect.reload());
 });
 
 gulp.task('images', function() {
     gulp.src(files.images)
         .pipe(imagemin())
-        .pipe(gulp.dest(paths.dist+'/images'));
+        .pipe(gulp.dest(paths.dist+'/images'))
+        .pipe(connect.reload());
 });
+
+gulp.task('connect', connect.server({
+    root: [paths.dist],
+    port: 1337,
+    livereload: true
+}));
 
 gulp.task('watch', function () {
     gulp.watch(files.scripts, ['scripts']);
@@ -65,6 +76,7 @@ gulp.task('default', [
     'html',
     'stylus',
     'images',
+    'connect',
     'watch'
 ]);
 
