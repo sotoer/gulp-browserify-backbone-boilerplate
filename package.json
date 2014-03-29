@@ -13,7 +13,8 @@
     "gulp-uglify": "*",
     "gulp-browserify": "*",
     "gulp-minify-html": "*",
-    "gulp-imagemin": "*"
+    "gulp-imagemin": "*",
+    "gulp-stylus": "*"
   },
   "engines": {
     "node": "0.10.24",

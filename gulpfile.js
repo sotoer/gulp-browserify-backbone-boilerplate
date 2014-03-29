@@ -4,6 +4,7 @@ var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var browserify = require('gulp-browserify');
 var minifyHTML = require('gulp-minify-html');
+var stylus = require('gulp-stylus');
 var imagemin = require('gulp-imagemin');
 
 var paths = {
@@ -14,6 +15,7 @@ var paths = {
 var files = {
     scripts: [paths.src+'/scripts/**/*.js'],
     html: [paths.src+'/**/*.html'],
+    stylus: [paths.src+'/styles/**/*.styl'],
     images: [
         paths.src+'/images/**/*.png',
         paths.src+'/images/**/*.jpg',
@@ -39,6 +41,12 @@ gulp.task('html', function() {
         .pipe(gulp.dest(paths.dist));
 });
 
+gulp.task('stylus', function() {
+    gulp.src(files.stylus)
+        .pipe(stylus({use: ['nib']}))
+        .pipe(gulp.dest(paths.dist+'/css'));
+});
+
 gulp.task('images', function() {
     gulp.src(files.images)
         .pipe(imagemin())
@@ -46,14 +54,17 @@ gulp.task('images', function() {
 });
 
 gulp.task('watch', function () {
-    
     gulp.watch(files.scripts, ['scripts']);
-
     gulp.watch(files.html, ['html']);
-
+    gulp.watch(files.stylus, ['stylus']);
     gulp.watch(files.images, ['images']);
-
 });
 
-gulp.task('default', ['scripts', 'html', 'images', 'watch']);
+gulp.task('default', [
+    'scripts',
+    'html',
+    'stylus',
+    'images',
+    'watch'
+]);
 
