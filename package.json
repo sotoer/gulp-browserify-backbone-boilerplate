@@ -15,7 +15,8 @@
     "gulp-minify-html": "*",
     "gulp-imagemin": "*",
     "gulp-stylus": "*",
-    "gulp-connect": "*"
+    "gulp-connect": "*",
+    "coffeeify": "*"
   },
   "engines": {
     "node": "0.10.24",

@@ -14,7 +14,10 @@ var paths = {
 };
 
 var files = {
-    scripts: [paths.src+'/scripts/**/*.js'],
+    scripts: [
+        paths.src+'/scripts/**/*.js',
+        paths.src+'/scripts/**/*.coffee'
+    ],
     html: [paths.src+'/**/*.html'],
     stylus: [paths.src+'/styles/**/*.styl'],
     images: [
@@ -25,10 +28,12 @@ var files = {
 };
 
 gulp.task('scripts', function (cb) {
-    return gulp.src(paths.src + '/scripts/main.js' )
+    return gulp.src(paths.src + '/scripts/main.coffee', {read: false})
         .pipe(browserify({
             debug: !util.env.production,
-            insertGlobals: false
+            insertGlobals: false,
+            transform: ['coffeeify'],
+            extensions: ['.coffee']
         }))
         .pipe(concat('build.js'))
         .pipe(uglify({outSourceMap:true}))
