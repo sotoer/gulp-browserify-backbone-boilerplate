@@ -7,16 +7,16 @@
     "backbone-browserify": "*"
   },
   "devDependencies": {
-    "gulp": "*",
-    "gulp-util": "*",
-    "gulp-concat": "*",
-    "gulp-uglify": "*",
-    "gulp-browserify": "*",
-    "gulp-minify-html": "*",
-    "gulp-imagemin": "*",
-    "gulp-stylus": "*",
-    "gulp-connect": "*",
-    "coffeeify": "*"
+    "gulp": "3.6.*",
+    "gulp-util": "2.2.*",
+    "gulp-concat": "2.2.*",
+    "gulp-uglify": "0.2.*",
+    "gulp-browserify": "0.5.*",
+    "gulp-minify-html": "0.1.1",
+    "gulp-imagemin": "0.1.*",
+    "gulp-stylus": "0.1.*",
+    "gulp-connect": "1.0.*",
+    "coffeeify": "0.6.*",
   },
   "engines": {
     "node": "0.10.24",
