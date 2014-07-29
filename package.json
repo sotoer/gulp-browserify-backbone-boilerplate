@@ -1,5 +1,5 @@
 {
-  "name": "dodger-page",
+  "name": "app-name",
   "version": "0.0.1",
   "dependencies": {
     "jquery-browserify": "*",
