@@ -1,4 +1,4 @@
-gulp-browserify-backbone-poilerplate
+gulp-browserify-backbone-boilerplate
 ====================================
 
 Gulp Browserify Backbone Boilerplate
