@@ -7,6 +7,7 @@ var minifyHTML = require('gulp-minify-html');
 var stylus = require('gulp-stylus');
 var imagemin = require('gulp-imagemin');
 var connect = require('gulp-connect');
+var rename = require('gulp-rename');
 
 var paths = {
     src: './src',
@@ -25,14 +26,25 @@ var files = {
 };
 
 gulp.task('scripts', function (cb) {
-    return gulp.src(paths.src + '/scripts/main.js' )
+    return gulp.src([paths.src + '/scripts/main.js'], {read: false})
+        // Browserify, and add source maps if this isn't a production build
         .pipe(browserify({
-            debug: !util.env.production,
-            insertGlobals: false
+            debug: true
+            // transform: ['reactify'],
+            // extensions: ['.jsx']
         }))
-        .pipe(concat('build.js'))
-        .pipe(uglify({outSourceMap:true}))
+
+        // .on('prebundle', function(bundler) {
+        //     // Make React available externally for dev tools
+        //     bundler.require('react');
+        // })
+
+        // Rename the destination file
+        .pipe(rename('build.js'))
+
+        // Output to the build directory
         .pipe(gulp.dest(paths.dist+'/js'))
+
         .pipe(connect.reload());
 });
 
